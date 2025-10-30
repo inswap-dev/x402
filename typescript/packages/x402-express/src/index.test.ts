@@ -32,14 +32,14 @@ vi.mock("x402/shared", async importOriginal => {
   const actual = (await importOriginal()) as Record<string, unknown>;
   return {
     ...actual,
-    getNetworkId: vi.fn().mockReturnValue("base-sepolia"),
+    getNetworkId: vi.fn().mockReturnValue(196),
     toJsonSafe: vi.fn(x => x),
     computeRoutePatterns: vi.fn().mockImplementation(routes => {
       const normalizedRoutes = Object.fromEntries(
         Object.entries(routes).map(([pattern, value]) => [
           pattern,
           typeof value === "string" || typeof value === "number"
-            ? ({ price: value, network: "base-sepolia" } as RouteConfig)
+            ? ({ price: value, network: "xlayer" } as RouteConfig)
             : (value as RouteConfig),
         ]),
       );
@@ -81,7 +81,7 @@ vi.mock("x402/shared", async importOriginal => {
 });
 
 vi.mock("x402/shared/evm", () => ({
-  getUsdcAddressForChain: vi.fn().mockReturnValue("0x036CbD53842c5426634e7929541eC2318f3dCF7e"),
+  getUsdcAddressForChain: vi.fn().mockReturnValue("0xD9115C52Fe965Ed6D7Bf97a350b375a054161f68"),
 }));
 
 // Mock exact.evm.decodePayment
@@ -131,7 +131,7 @@ describe("paymentMiddleware()", () => {
   const routesConfig: RoutesConfig = {
     "/test": {
       price: "$0.001",
-      network: "base-sepolia",
+      network: "xlayer",
       config: middlewareConfig,
     },
   };
@@ -139,7 +139,7 @@ describe("paymentMiddleware()", () => {
   const validPayment: PaymentPayload = {
     scheme: "exact",
     x402Version: 1,
-    network: "base-sepolia",
+    network: "xlayer",
     payload: {
       signature: "0x123",
       authorization: {
@@ -200,7 +200,7 @@ describe("paymentMiddleware()", () => {
           verb: "GET",
           config: {
             price: "$0.001",
-            network: "base-sepolia",
+            network: "xlayer",
             config: middlewareConfig,
           },
         };
@@ -271,14 +271,14 @@ describe("paymentMiddleware()", () => {
       accepts: [
         {
           scheme: "exact",
-          network: "base-sepolia",
+          network: "xlayer",
           maxAmountRequired: "1000",
           resource: "https://api.example.com/resource",
           description: "Test payment",
           mimeType: "application/json",
           payTo: "0x1234567890123456789012345678901234567890",
           maxTimeoutSeconds: 300,
-          asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          asset: "0xD9115C52Fe965Ed6D7Bf97a350b375a054161f68",
           outputSchema,
           extra: {
             name: "USDC",
@@ -304,14 +304,14 @@ describe("paymentMiddleware()", () => {
       accepts: [
         {
           scheme: "exact",
-          network: "base-sepolia",
+          network: "xlayer",
           maxAmountRequired: "1000",
           resource: "https://api.example.com/resource",
           description: "Test payment",
           mimeType: "application/json",
           payTo: "0x1234567890123456789012345678901234567890",
           maxTimeoutSeconds: 300,
-          asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          asset: "0xD9115C52Fe965Ed6D7Bf97a350b375a054161f68",
           outputSchema,
           extra: {
             name: "USDC",
@@ -330,7 +330,7 @@ describe("paymentMiddleware()", () => {
     (mockSettle as ReturnType<typeof vi.fn>).mockResolvedValue({
       success: true,
       transaction: "0x123",
-      network: "base-sepolia",
+      network: "xlayer",
     });
 
     // Mock response.end to capture arguments
@@ -364,14 +364,14 @@ describe("paymentMiddleware()", () => {
       accepts: [
         {
           scheme: "exact",
-          network: "base-sepolia",
+          network: "xlayer",
           maxAmountRequired: "1000",
           resource: "https://api.example.com/resource",
           description: "Test payment",
           mimeType: "application/json",
           payTo: "0x1234567890123456789012345678901234567890",
           maxTimeoutSeconds: 300,
-          asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          asset: "0xD9115C52Fe965Ed6D7Bf97a350b375a054161f68",
           outputSchema,
           extra: {
             name: "USDC",
@@ -391,7 +391,7 @@ describe("paymentMiddleware()", () => {
       success: false,
       errorReason: "invalid_transaction_state",
       transaction: "0x123",
-      network: "base-sepolia",
+      network: "xlayer",
       payer: "0x123",
     });
 
@@ -404,14 +404,14 @@ describe("paymentMiddleware()", () => {
       accepts: [
         {
           scheme: "exact",
-          network: "base-sepolia",
+          network: "xlayer",
           maxAmountRequired: "1000",
           resource: "https://api.example.com/resource",
           description: "Test payment",
           mimeType: "application/json",
           payTo: "0x1234567890123456789012345678901234567890",
           maxTimeoutSeconds: 300,
-          asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          asset: "0xD9115C52Fe965Ed6D7Bf97a350b375a054161f68",
           outputSchema,
           extra: {
             name: "USDC",
@@ -454,7 +454,7 @@ describe("paymentMiddleware()", () => {
     (mockSettle as ReturnType<typeof vi.fn>).mockResolvedValue({
       success: true,
       transaction: "0x123",
-      network: "base-sepolia",
+      network: "xlayer",
     });
 
     // Simulate downstream handler setting status 500
@@ -707,3 +707,4 @@ describe("paymentMiddleware()", () => {
     });
   });
 });
+

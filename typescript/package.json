@@ -10,7 +10,7 @@
   "description": "x402 Payment Protocol Monorepo",
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=./packages/*",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "lint:check": "turbo run lint:check",

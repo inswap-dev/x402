@@ -20,7 +20,7 @@ export const middleware = paymentMiddleware(
   {
     '/protected': {
       price: '$0.01',
-      network: "base-sepolia",
+      network: "xlayer",
       config: {
         description: 'Access to protected content'
       }
@@ -58,7 +58,7 @@ type RoutesConfig = Record<string, Price | RouteConfig>;
 
 interface RouteConfig {
   price: Price;           // Price in USD or token amount
-  network: Network;       // "base" or "base-sepolia"
+  network: Network;       // e.g., "xlayer"
   config?: PaymentMiddlewareConfig;
 }
 ```

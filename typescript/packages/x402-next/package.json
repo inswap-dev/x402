@@ -1,11 +1,11 @@
 {
-  "name": "x402-next",
-  "version": "0.7.0",
+  "name": "ins402-next",
+  "version": "0.7.2",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "tsx --env-file=.env index.ts",
+    "start": "tsx --env-file=.env src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "build": "tsup",
@@ -41,7 +41,7 @@
     "@coinbase/cdp-sdk": "^1.22.0",
     "@solana/kit": "^2.1.1",
     "viem": "^2.21.26",
-    "x402": "workspace:^",
+    "ins402": "workspace:^",
     "zod": "^3.24.2"
   },
   "peerDependencies": {

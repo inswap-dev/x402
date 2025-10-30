@@ -22,7 +22,7 @@ app.use(paymentMiddleware(
   {
     "/protected-route": {
       price: "$0.10",
-      network: "base-sepolia",
+      network: "xlayer",
       config: {
         description: "Access to premium content",
       }
@@ -62,7 +62,7 @@ type RoutesConfig = Record<string, Price | RouteConfig>;
 
 interface RouteConfig {
   price: Price;           // Price in USD or token amount
-  network: Network;       // "base" or "base-sepolia"
+  network: Network;       // e.g., "xlayer"
   config?: PaymentMiddlewareConfig;
 }
 ```

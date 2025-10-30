@@ -1,15 +1,15 @@
 import type { Context } from "hono";
 import { Address, getAddress } from "viem";
 import { Address as SolanaAddress } from "@solana/kit";
-import { exact } from "x402/schemes";
+import { exact } from "ins402/schemes";
 import {
   computeRoutePatterns,
   findMatchingPaymentRequirements,
   findMatchingRoute,
   processPriceToAtomicAmount,
   toJsonSafe,
-} from "x402/shared";
-import { getPaywallHtml } from "x402/paywall";
+} from "ins402/shared";
+import { getPaywallHtml } from "ins402/paywall";
 import {
   ERC20TokenAmount,
   FacilitatorConfig,
@@ -22,8 +22,8 @@ import {
   PaywallConfig,
   SupportedEVMNetworks,
   SupportedSVMNetworks,
-} from "x402/types";
-import { useFacilitator } from "x402/verify";
+} from "ins402/types";
+import { useFacilitator } from "ins402/verify";
 
 /**
  * Creates a payment middleware factory for Hono
@@ -328,5 +328,5 @@ export type {
   Resource,
   RouteConfig,
   RoutesConfig,
-} from "x402/types";
+} from "ins402/types";
 export type { Address as SolanaAddress } from "@solana/kit";
