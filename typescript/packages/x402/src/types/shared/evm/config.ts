@@ -54,7 +54,7 @@ export const config: Record<string, ChainConfig> = {
   },
   "196": {
     usdcAddress: "0x74b7f16337b8972027f6196a17a631ac6de26d22",
-    usdcName: "USDC",
+    usdcName: "USD Coin",
   },
 };
 
